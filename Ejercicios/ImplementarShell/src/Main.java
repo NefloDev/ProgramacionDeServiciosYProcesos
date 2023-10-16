@@ -14,7 +14,9 @@ public class Main {
         boolean repeat;
         String input = "";
         String output = "";
-        Command cm = new Command(new String[]{""}, "C:" + File.separator);
+        //This is my directory because I'm working on Windows with a local VM of Linux
+        String path = File.separator + File.separator + "wsl.localhost" + File.separator + "kali-linux" + File.separator;
+        Command cm = new Command(new String[]{""}, path);
 
         do{
             do {
