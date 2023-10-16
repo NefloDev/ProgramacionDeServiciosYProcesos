@@ -26,13 +26,13 @@ public class Command {
      */
     private String redirectedPath;
     /**
-     * String final static attribute called "CMDCALL" specifies the call to cmd to execute commands
+     * String final static attribute called "CMDCALL" specifies the call to linux's terminal to execute commands
      */
-    private final static String CMDCALL = "cmd.exe";
+    private final static String CMDCALL = "/bin/bash";
     /**
-     * String final static attribute called "CMDSTART" specifies the call to cmd to start executing a command
+     * String final static attribute called "CMDSTART" tells the terminal to execute the following command on the input
      */
-    private final static String CMDSTART = "/c";
+    private final static String CMDSTART = "-c";
     /**
      * Integer final static attribute called "CMDARRAYSTARTINDEX" specifies the index where the command starts in the cmd array
      */

@@ -14,8 +14,7 @@ public class Main {
         boolean repeat;
         String input = "";
         String output = "";
-        //This is my directory because I'm working on Windows with a local VM of Linux
-        Command cm = new Command(new String[]{""}, "C:" + File.separator);
+        Command cm = new Command(new String[]{""}, ""); //Now will be the relative address
 
         do{
             do {
