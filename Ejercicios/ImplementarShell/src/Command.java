@@ -26,10 +26,6 @@ public class Command {
      */
     private String redirectedPath;
     /**
-     * String attribute called "lastCommand"
-     */
-    private String lastCommand;
-    /**
      * String final static attribute called "CMDCALL" specifies the call to cmd to execute commands
      */
     private final static String CMDCALL = "cmd.exe";
@@ -127,14 +123,6 @@ public class Command {
     }
 
     /**
-     * Gets the last executed command's info
-     * @return A String containing the information about the last command that has been executed
-     */
-    public String getLastCommand(){
-        return lastCommand;
-    }
-
-    /**
      * Changes the path to execute the command if a "cd" command has been executed
      */
     public void cdCommand(){
@@ -181,12 +169,11 @@ public class Command {
 
     /**
      * Executes a command using a Process Builder, depending on if it has a redirected output or not, it will return the
-     * output or it will write it into a file
+     * output, or it will write it into a file
      * @return A String containing the output of the command that has been executed
      */
     public String executeCommand(){
         String line;
-        StringBuilder commandRegister = new StringBuilder();
         StringBuilder sb = new StringBuilder();
         ProcessBuilder pb = new ProcessBuilder();
 
@@ -203,14 +190,12 @@ public class Command {
                     System.out.println("Process output:");
                     while ((line=br.readLine())!=null){
                         sb.append(line).append("\n");
-                        commandRegister.append(line).append("\n");
                     }
                 }else{
                     createIfNotExists(redirectedPath);
-                    FileWriter fw =  new FileWriter(new File(redirectedPath));
+                    FileWriter fw =  new FileWriter(redirectedPath);
                     while((line = br.readLine()) != null){
                         fw.write(line + "\n");
-                        commandRegister.append(line).append("\n");
                     }
                     fw.close();
                     redirectedPath = null;
@@ -220,19 +205,17 @@ public class Command {
             }
         }
 
-        lastCommand = commandRegister.toString();
-
         return sb.toString();
     }
 
     /**
-     * Creates a File with the name given if it doesn't exists, having into account if it has a full path or just a name,
+     * Creates a File with the name given if it doesn't exist, having into account if it has a full path or just a name,
      * so if it is just a name it will create the file into a new directory called "ShellOutput" inside the path where the Command
      * is executing at
      * @param fileName String containing the name/path of the file to be created
      */
     private void createIfNotExists(String fileName){
-        File f = null;
+        File f;
         int lastIndex = fileName.lastIndexOf(File.separator)+1;
         String absolutePath = fileName.substring(0, lastIndex);
 
