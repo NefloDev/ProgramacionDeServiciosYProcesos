@@ -64,7 +64,7 @@ public class Gardener implements Runnable {
                     try {
                         Thread.sleep(1000);
                         manager.stopWorkingOnGarden(garden);
-                        System.out.println("Gardener " + id + " stopped working on garden " + (garden + ));
+                        System.out.println("Gardener " + id + " stopped working on garden " + (garden + 1));
                         worked++;
 
                     } catch (InterruptedException e) {
