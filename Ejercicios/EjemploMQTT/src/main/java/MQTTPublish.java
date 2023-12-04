@@ -17,7 +17,7 @@ public class MQTTPublish {
         String publisherId = UUID.randomUUID().toString();
         IMqttClient publisher;
         try{
-            publisher = new MqttClient("tcp://52.23.157.205:1883", publisherId);
+            publisher = new MqttClient("tcp://54.160.92.6:1883", publisherId);
 
             MqttConnectOptions options = new MqttConnectOptions();
             options.setAutomaticReconnect(true);
