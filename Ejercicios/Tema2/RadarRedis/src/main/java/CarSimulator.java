@@ -24,22 +24,24 @@ public class CarSimulator implements Runnable {
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(1000);
-            int speed = rand.nextInt(60, 141);
-            String licensePlate = generateLicensePlate();
+        do {
+            try {
+                int speed = rand.nextInt(60, 141);
+                String licensePlate = generateLicensePlate();
 
-            if(client.isConnected()) {
-                String topic = "car/data";
-                byte[] payload = (licensePlate + ":" + speed).getBytes();
-                MqttMessage msg = new MqttMessage(payload);
-                msg.setQos(0);
-                msg.setRetained(true);
-                client.publish(topic, msg);
+                if(client.isConnected()) {
+                    String topic = "car/data";
+                    byte[] payload = (licensePlate + ":" + speed).getBytes();
+                    MqttMessage msg = new MqttMessage(payload);
+                    msg.setQos(0);
+                    msg.setRetained(true);
+                    client.publish(topic, msg);
+                }
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        }while (true);
     }
 
     private void initCallbacks() throws MqttException {

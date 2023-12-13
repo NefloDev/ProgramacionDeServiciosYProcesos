@@ -3,7 +3,7 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-        String url = "54.160.92.6";
+        String url = "34.228.162.124";
         String mqttUrl = String.format("tcp://%s:1883", url);
         CarSimulator simulator = new CarSimulator(mqttUrl);
         Radar radar = new Radar(mqttUrl, url);

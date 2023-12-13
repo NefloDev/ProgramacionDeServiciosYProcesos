@@ -1,10 +1,13 @@
 import org.eclipse.paho.client.mqttv3.*;
 import redis.clients.jedis.Jedis;
+
 import java.util.UUID;
 
 public class PoliceStation implements Runnable {
     private final MqttClient client;
     private final Jedis jedis;
+    public static final String VEHICLES = "ALEJANDRO:VEHICLES";
+    public static final String FINEDVEHICLES = "ALEJANDRO:FINEDVEHICLES";
 
     public PoliceStation(String mqttUrl, String redisUrl) {
         try {
@@ -16,6 +19,7 @@ public class PoliceStation implements Runnable {
             client.connect();
             initCallbacks();
             jedis = new Jedis(redisUrl, 6379);
+            jedis.del(FINEDVEHICLES, VEHICLES);
         } catch (MqttException e) {
             throw new RuntimeException(e);
         }
@@ -23,13 +27,18 @@ public class PoliceStation implements Runnable {
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(1000);
-            System.out.printf("Total vehicles: %d\n", jedis.get("VEHICLES").length());
-            System.out.printf("Total tickets: %.2f\n", (double)jedis.get("FINEDVEHICLES").length()/jedis.get("VEHICLES").length());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        do {
+            try {
+                long vehiclesLength = jedis.llen(VEHICLES);
+                long finedVehiclesLength = jedis.llen(FINEDVEHICLES);
+                double percentage = (double)finedVehiclesLength/vehiclesLength*100;
+                System.out.printf("Total vehicles: %d\n", vehiclesLength);
+                System.out.printf("Total tickets: %.2f%%(%d fined vehicles)\n", finedVehiclesLength == 0 ? 0 : percentage, finedVehiclesLength);
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }while (true);
     }
 
     private void initCallbacks() throws MqttException {
@@ -53,7 +62,7 @@ public class PoliceStation implements Runnable {
                         String msg = String.format("TICKET:%s:%d", data[2], fine);
                         MqttMessage message = new MqttMessage(msg.getBytes());
                         client.publish("car/ticket", message);
-                        jedis.set("FINEDVEHICLES", data[2]);
+                        jedis.rpush(FINEDVEHICLES, data[2]);
                     }
                 }
             }

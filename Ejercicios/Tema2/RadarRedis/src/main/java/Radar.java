@@ -7,6 +7,7 @@ public class Radar implements Runnable {
     private int speed;
     private String licensePlate;
     private final String redisUrl;
+    public static final String VEHICLES = "ALEJANDRO:VEHICLES";
     public Radar(String mqttUrl, String redisUrl) {
         try {
             this.redisUrl = redisUrl;
@@ -24,22 +25,26 @@ public class Radar implements Runnable {
 
     @Override
     public void run() {
-        try {
-            if(licensePlate != null){
-                if (speed > 80){
-                    String msg = String.format("EXCESS:%d:%s", speed, licensePlate);
-                    MqttMessage message = new MqttMessage(msg.getBytes());
-                    client.publish("car/excess", message);
-                }else{
+        do {
+            try {
+                if(licensePlate != null){
                     try(Jedis jedis = new Jedis(redisUrl, 6379)){
-                        jedis.set("VEHICLES", licensePlate);
+                        if (speed > 80){
+                            String msg = String.format("EXCESS:%d:%s", speed, licensePlate);
+                            MqttMessage message = new MqttMessage(msg.getBytes());
+                            client.publish("car/excess", message);
+                        }
+                        jedis.rpush(VEHICLES, licensePlate);
+                        licensePlate = null;
+                    }catch (Exception e){
+                        throw new RuntimeException(e);
                     }
                 }
-                licensePlate = null;
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        }while (true);
     }
 
     private void initCallbacks() throws MqttException {
