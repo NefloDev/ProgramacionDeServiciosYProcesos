@@ -55,12 +55,15 @@ public class MeteoServer implements Runnable{
                 String alertList = NAME + ":" + ALERTS;
 
                 jedis.hset(lastList, "date", date);
+                System.out.println("Date: " + date);
                 jedis.hset(lastList, "temp", String.valueOf(temp));
+                System.out.println("Temp: " + temp);
                 jedis.rpush(evoList, String.valueOf(temp));
-                
+
                 if (temp > 30 || temp < 0){
                     String alert = "Alerta por temperaturas extremas el " + date + " a las " + time + " en la estación " + id;
                     jedis.rpush(alertList, alert);
+                    System.out.println(alert);
                 }
             }
 
