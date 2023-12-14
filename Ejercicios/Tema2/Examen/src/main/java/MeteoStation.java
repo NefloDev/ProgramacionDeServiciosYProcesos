@@ -53,7 +53,7 @@ public class MeteoStation implements Runnable {
         System.out.printf("MeteoStation %s stopped\n", id);
     }
 
-    private void initializeCallbacks(){
+    private void initializeCallbacks() throws MqttException {
         client.setCallback(new MqttCallback() {
             @Override
             public void connectionLost(Throwable throwable) {
@@ -61,10 +61,13 @@ public class MeteoStation implements Runnable {
             }
 
             @Override
-            public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {}
+            public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+                stop();
+            }
 
             @Override
             public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {}
         });
+        client.subscribe(NAME + "/METEO/STOP/" + id);
     }
 }

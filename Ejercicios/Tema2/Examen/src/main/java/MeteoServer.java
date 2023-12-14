@@ -28,18 +28,8 @@ public class MeteoServer implements Runnable{
     }
     @Override
     public void run() {
-        while (!stop){
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        while (true){
         }
-    }
-
-    public void stop(){
-        stop = true;
-        System.out.println("MeteoServer stopped");
     }
 
     private void initializeCallbacks() throws MqttException{
@@ -51,23 +41,33 @@ public class MeteoServer implements Runnable{
 
             @Override
             public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-                String[] message = mqttMessage.toString().split("/");
-                String id = message[0];
-                String date = message[1];
-                String time = message[2];
-                int temp = Integer.parseInt(message[3]);
+                if(!s.equals(NAME + ":STOP")){
+                    String[] message = mqttMessage.toString().split("/");
+                    String id = message[0];
+                    String date = message[1];
+                    String time = message[2];
+                    int temp = Integer.parseInt(message[3]);
 
-                String lastList = NAME + ":" + LASTMEASUREMENT + ":" + id;
-                String evoList = NAME + ":" + TEMP + ":" + id;
-                String alertList = NAME + ":" + ALERTS;
+                    String lastList = NAME + ":" + LASTMEASUREMENT + ":" + id;
+                    String evoList = NAME + ":" + TEMP + ":" + id;
+                    String alertList = NAME + ":" + ALERTS;
 
-                jedis.hset(lastList, "date", date + " " + time);
-                jedis.hset(lastList, "temp", String.valueOf(temp));
-                jedis.rpush(evoList, String.valueOf(temp));
+                    jedis.hset(lastList, "date", date + " " + time);
+                    jedis.hset(lastList, "temp", String.valueOf(temp));
+                    jedis.rpush(evoList, String.valueOf(temp));
 
-                if (temp > 30 || temp < 0){
-                    String alert = "Alerta por temperaturas extremas el " + date + " a las " + time + " en la estación " + id;
-                    jedis.rpush(alertList, alert);
+                    if (temp > 30 || temp < 0){
+                        String alert = "Alerta por temperaturas extremas el " + date + " a las " + time + " en la estación " + id;
+                        jedis.rpush(alertList, alert);
+                    }
+                }else{
+                    String id = jedis.rpop(NAME + ":STOPSTATION");
+                    String topic = NAME + "/METEO/STOP/" + id;
+                    String message = "STOP";
+                    MqttMessage msg = new MqttMessage(message.getBytes());
+                    msg.setQos(0);
+                    msg.setRetained(false);
+                    client.publish(topic, msg);
                 }
             }
 
@@ -78,5 +78,6 @@ public class MeteoServer implements Runnable{
             String topic = NAME + "/METEO/" + i + "/MEASUREMENTS";
             client.subscribe(topic);
         }
+        client.subscribe(NAME + ":STOP");
     }
 }

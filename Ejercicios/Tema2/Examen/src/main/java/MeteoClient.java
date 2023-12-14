@@ -1,3 +1,6 @@
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import redis.clients.jedis.Jedis;
 
 import java.io.BufferedReader;
@@ -7,6 +10,8 @@ import java.util.List;
 
 public class MeteoClient implements Runnable{
     private static final String IP = "184.73.34.167";
+    private static final String STOPTOPIC = "ALEJANDRO:STOP";
+    private static final String STOPSTATIONLIST = "ALEJANDRO:STOPSTATIONLIST";
     private static final String HELP = """
                                     Commands:
                                     LAST ID -> Last measurement by ID
@@ -14,12 +19,14 @@ public class MeteoClient implements Runnable{
                                     MAXTEMP ALL -> Max temperature by all stations
                                     ALERTS -> Alerts
                                     HELP -> Shows this message
+                                    STOP ID -> Stops station with ID
                                     EXIT -> Exits the program
                                     """;
     private Jedis jedis;
     private List<MeteoStation> stations;
     private MeteoServer server;
     private Thread serverThread;
+    private MqttClient client;
     List<Thread> threads;
     public MeteoClient(){
         try {
@@ -40,6 +47,13 @@ public class MeteoClient implements Runnable{
             serverThread = new Thread(server);
             serverThread.start();
 
+            client = new MqttClient("tcp://" + IP + ":1883", "CLIENT");
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setAutomaticReconnect(true);
+            options.setCleanSession(true);
+            options.setConnectionTimeout(10);
+            client.connect(options);
+
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,13 +62,14 @@ public class MeteoClient implements Runnable{
     public void run() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean exit = false;
-        //Eliminamos todas las listas para comenzar una nueva sesión vacía
+        //Delete all lists to start a clean session
         for (int i = 1; i <= 10; i++) {
             jedis.hdel("ALEJANDRO:LASTMEASUREMENT:"+i, "date");
             jedis.hdel("ALEJANDRO:LASTMEASUREMENT:"+i, "temp");
             jedis.del("ALEJANDRO:TEMPERATURES:"+i);
         }
         jedis.del("ALEJANDRO:ALERTS");
+        jedis.del(STOPSTATIONLIST);
         System.out.println("Welcome to MeteoClient");
         System.out.println(HELP);
         do{
@@ -103,8 +118,22 @@ public class MeteoClient implements Runnable{
                             System.out.println(jedis.lpop("ALEJANDRO:ALERTS"));
                         }
                         break;
-                        case "HELP":
-                            System.out.println(HELP);
+                    case "HELP":
+                        System.out.println(HELP);
+                        break;
+                    case "STOP ID":
+                        System.out.print("ID: ");
+                        input = br.readLine();
+
+                        //I send a mqtt message because it's better than repeatingly calling jedis to check if something
+                        //has been added to the list
+                        MqttMessage msg = new MqttMessage(("STOP/"+input).getBytes());
+                        msg.setQos(0);
+                        msg.setRetained(false);
+                        client.publish(STOPTOPIC, msg);
+
+                        jedis.lpush(STOPSTATIONLIST, input);
+                        break;
                     default:
                         System.out.println("Command not available");
                 }
@@ -112,8 +141,6 @@ public class MeteoClient implements Runnable{
                 e.printStackTrace();
             }
         }while (!exit);
-        server.stop();
-        stations.forEach(MeteoStation::stop);
         try {
             serverThread.join();
         } catch (InterruptedException e) {
