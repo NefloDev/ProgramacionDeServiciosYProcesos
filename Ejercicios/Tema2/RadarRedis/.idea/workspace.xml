@@ -4,74 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b194f10f-0bce-4bc7-97bc-7f4110f87e2b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/02f722b3-c12c-419c-8bd1-630814207536-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/067ff373-1f3a-4888-8557-f5c80b106a90-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/0842279d-48c4-4f03-962b-ac2fb20a54c8-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/0843a98d-745c-482b-bcfc-ea068be8e544-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/0c87a830-10fc-45b7-ab1e-1793034631c6-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/0d5cf5f6-1b1d-46ce-bf49-e4b65d9da40a-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/119e0d7e-65ae-441f-b8d0-fd252198c728-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/13bea7b0-aad6-49b4-abd7-c74358615590-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/13bea7b0-aad6-49b4-abd7-c74358615590-tcp342281621241883/s-3.msg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/14c17985-7b72-43a2-82bc-6b2661a1ae38-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1b10102c-e667-49bd-9146-4b32ffdbf22e-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/24c77730-68b4-4708-a1c8-b57f6d0ba36e-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2942fbcf-78ee-4ff5-afbb-68de8838f194-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2ae8530a-59b3-4ff2-bf92-4602033ca652-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2ae8530a-59b3-4ff2-bf92-4602033ca652-tcp342281621241883/s-2.msg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2e920dbd-70c4-40fd-9da0-ce9ed35ae675-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2f6f469c-ddb4-41a4-8de6-a29ecc44b17a-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/352f8c8b-42f3-45e2-96ba-14a18e804b0e-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/3f1de590-5d42-452b-a264-398df4198b56-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/4065f10c-3e5d-4388-8302-4e32c0c18a19-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/45fad066-00ca-4933-ae6e-7b57b6e54904-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/51ac9948-120e-45ef-99e3-0506513acc66-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/55bae2ed-2fc0-4cdf-ace4-265494d5a16f-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/55dabc24-c813-4f43-87e3-8a51bcb79b99-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/5cb9f887-e1b9-4bcc-8524-0d59f9ce5e19-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/687c3f48-5569-4d2f-8fb2-4af9a67d72ef-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/75168798-6041-4aa9-9615-e4e31eb82986-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/83fe6741-a1f2-4b29-a905-62c5365dcb5b-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/84831103-e7d3-4293-84af-326399b51a03-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/859141e4-0c44-40de-9179-7a684023a685-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/880d0f91-c64a-4395-9512-086d91eb428a-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8a19a649-8087-4b29-9673-82a8ddbbd156-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/922059ae-7a36-4d5a-93a3-fe958515ce2e-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/976d92e2-e9e3-445c-b04f-23afb01548f1-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/976d92e2-e9e3-445c-b04f-23afb01548f1-tcp342281621241883/s-3.msg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/9a6e90af-08e8-4514-b577-eba8a6d81e43-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/9c0e5487-022c-45c4-a960-30a24bf0470e-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/9cf85c60-0535-439b-b622-304750e0ce6b-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/9d0f5e2c-a80a-4472-a597-cd46d4c40310-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/9d388753-6f58-483d-b46c-705ac14c2092-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/a19ba176-4c8d-4079-982d-1559cbf1faaa-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/a499a733-ad6f-4111-9f17-a941d766f122-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/a9ea9916-cd92-4d90-bd27-7664902861a0-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ad25e5d0-5999-4e8b-b7a3-ebcf954631d2-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/b0802be5-ec6d-4631-b5cf-4224b7f00a25-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ba4a460d-341e-428e-a457-82eef2607e9e-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/c37d77c5-6c06-4a2c-ad19-6b026e3835f3-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/c6f3b8b5-fb20-4659-bf7a-87df1ce57dd1-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/c7f95f03-de94-4755-8d0f-b0d8ee55d5f8-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cd39f0af-35de-4c57-a212-de6e8651a192-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cd660903-f396-44bc-90bf-05469b558570-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ce64a42d-1450-4550-9801-7730ad1540ab-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cf26e1e0-22f8-42a3-9892-20eb148e6941-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e14ff14d-dc26-41df-9667-5f22249c660f-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/e1b94959-c69c-4ee3-8dfa-285ca6e480b4-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eef9519b-f3a7-4256-b73c-d0b383983e91-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/f048016b-735a-4f26-bd0c-187c36ecd17c-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/f45a89ed-23ec-490b-ad2d-e234160e8e3e-tcp342281621241883/.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/f45a89ed-23ec-490b-ad2d-e234160e8e3e-tcp342281621241883/s-46.msg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CarSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CarSimulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PoliceStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PoliceStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Radar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Radar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Redis/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Redis/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Redis/src/main/java/Shortener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Redis/src/main/java/Shortener.java" afterDir="false" />
-    </list>
+    <list default="true" id="b194f10f-0bce-4bc7-97bc-7f4110f87e2b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,6 +19,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -151,6 +87,7 @@
       <workItem from="1702498372337" duration="1896000" />
       <workItem from="1702501160300" duration="1088000" />
       <workItem from="1702502493919" duration="14000" />
+      <workItem from="1702562654394" duration="7000" />
     </task>
     <servers />
   </component>

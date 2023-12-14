@@ -3,7 +3,7 @@ import java.io.InputStreamReader;
 
 public class Chat {
     public static void main(String[] args) {
-        Client chatClient = new Client("tcp://54.160.92.6:1883",
+        Client chatClient = new Client("tcp://test.mosquitto.org:1883",
                 "chat", "david", "");
         chatClient.connect();
 
