@@ -4,6 +4,7 @@ import redis.clients.jedis.Jedis;
 public class MeteoServer implements Runnable{
     private MqttClient client;
     private Jedis jedis;
+    private boolean stop;
     public static final String NAME = "ALEJANDRO";
     private static final String IP = "184.73.34.167";
     private static final String LASTMEASUREMENT = "LASTMEASUREMENT";
@@ -20,19 +21,25 @@ public class MeteoServer implements Runnable{
             client.connect(options);
 
             initializeCallbacks();
+            stop = false;
         }catch(Exception e){
             System.err.println("Error in MeteoServer: " + e.getMessage());
         }
     }
     @Override
     public void run() {
-        while (true){
+        while (!stop){
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public void stop(){
+        stop = true;
+        System.out.println("MeteoServer stopped");
     }
 
     private void initializeCallbacks() throws MqttException{
@@ -54,16 +61,13 @@ public class MeteoServer implements Runnable{
                 String evoList = NAME + ":" + TEMP + ":" + id;
                 String alertList = NAME + ":" + ALERTS;
 
-                jedis.hset(lastList, "date", date);
-                System.out.println("Date: " + date);
+                jedis.hset(lastList, "date", date + " " + time);
                 jedis.hset(lastList, "temp", String.valueOf(temp));
-                System.out.println("Temp: " + temp);
                 jedis.rpush(evoList, String.valueOf(temp));
 
                 if (temp > 30 || temp < 0){
                     String alert = "Alerta por temperaturas extremas el " + date + " a las " + time + " en la estación " + id;
                     jedis.rpush(alertList, alert);
-                    System.out.println(alert);
                 }
             }
 

@@ -9,11 +9,13 @@ public class MeteoStation implements Runnable {
     private String id;
     private String topic;
     private MqttClient client;
-    public static final String IP = "184.73.34.167";
+    private static final String IP = "184.73.34.167";
+    private boolean stop;
 
     public MeteoStation(int id) {
         this.id = String.valueOf(id);
         topic = NAME + "/METEO/" + this.id + "/MEASUREMENTS";
+        stop = false;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class MeteoStation implements Runnable {
             initializeCallbacks();
 
             Random rand = new Random();
-            while (true) {
+            while (!stop) {
                 if(client.isConnected()){
                     LocalDateTime dateTime = LocalDateTime.now();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy/HH:mm:ss");
@@ -44,6 +46,11 @@ public class MeteoStation implements Runnable {
         } catch (Exception e) {
             System.err.println("Error in MeteoStation " + id + ": " + e.getMessage());
         }
+    }
+
+    public void stop(){
+        stop = true;
+        System.out.printf("MeteoStation %s stopped\n", id);
     }
 
     private void initializeCallbacks(){
