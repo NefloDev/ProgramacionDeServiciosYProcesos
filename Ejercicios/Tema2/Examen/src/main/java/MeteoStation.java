@@ -3,23 +3,23 @@ import org.eclipse.paho.client.mqttv3.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
-import java.util.UUID;
 
 public class MeteoStation implements Runnable {
     private static final String NAME = "ALEJANDRO";
     private String id;
     private String topic;
     private MqttClient client;
+    public static final String IP = "184.73.34.167";
 
-    public MeteoStation() {
-        this.id = UUID.randomUUID().toString().substring(0, 8);
-        topic = NAME + "/METEO/" + id + "/MEASUREMENTS";
+    public MeteoStation(int id) {
+        this.id = String.valueOf(id);
+        topic = NAME + "/METEO/" + this.id + "/MEASUREMENTS";
     }
 
     @Override
     public void run() {
         try {
-            client = new MqttClient("tcp://test.mosquitto.org:1883", id);
+            client = new MqttClient("tcp://" + IP + ":1883", id);
             MqttConnectOptions options = new MqttConnectOptions();
             options.setAutomaticReconnect(true);
             options.setCleanSession(true);
@@ -31,9 +31,9 @@ public class MeteoStation implements Runnable {
             while (true) {
                 if(client.isConnected()){
                     LocalDateTime dateTime = LocalDateTime.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy/HH:mm:ss");
                     int temp = rand.nextInt(-10, 41);
-                    String message = String.format("(%s) : %dºC", formatter.format(dateTime), temp);
+                    String message = String.format("%s/%s/%d", id, formatter.format(dateTime), temp);
                     MqttMessage msg = new MqttMessage(message.getBytes());
                     msg.setQos(0);
                     msg.setRetained(false);
@@ -54,18 +54,10 @@ public class MeteoStation implements Runnable {
             }
 
             @Override
-            public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-                System.out.println("Message arrived in MeteoStation " + id + ": " + mqttMessage.toString());
-            }
+            public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {}
 
             @Override
-            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
-                try {
-                    System.out.println("Delivery complete in MeteoStation " + id + ": " + iMqttDeliveryToken.getMessage().toString());
-                } catch (MqttException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {}
         });
     }
 }
