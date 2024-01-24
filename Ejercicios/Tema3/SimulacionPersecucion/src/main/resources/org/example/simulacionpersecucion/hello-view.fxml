@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<VBox fx:id="vBox" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.simulacionpersecucion.SimulationController">
+    <Pane fx:id="pane">
+        <Circle fx:id="playerCircle" fill="blue" radius="25"/>
+        <Circle fx:id="enemyCircle" fill="red" radius="25"/>
+        <Label fx:id="highScoreLabel" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 50;">
+            <font>
+                <Font size="30"/>
+            </font>
+        </Label>
+        <Label fx:id="movesScoreLabel" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 80 50 50 50;">
+            <font>
+                <Font size="30"/>
+            </font>
+        </Label>
+        <Label fx:id="gameOverText" text="GAME OVER" alignment="CENTER" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-text-alignment: center;">
+            <font>
+                <Font size="140" />
+            </font>
+        </Label>
+        <Label fx:id="movesText" alignment="CENTER" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 220 0 0 0; -fx-text-alignment: center;">
+            <font>
+                <Font size="40"/>
+            </font>
+        </Label>
+        <Label fx:id="countDownText" alignment="CENTER" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 380 0 0 0; -fx-text-alignment: center;">
+            <font>
+                <Font size="30"/>
+            </font>
+        </Label>
+    </Pane>
+</VBox>
