@@ -3,14 +3,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
 <VBox fx:id="vBox" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.simulacionpersecucion.SimulationController">
     <Pane fx:id="pane">
-        <Circle fx:id="playerCircle" fill="blue" radius="25"/>
-        <Circle fx:id="enemyCircle" fill="red" radius="25"/>
         <Label fx:id="highScoreLabel" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 50;">
             <font>
                 <Font size="30"/>

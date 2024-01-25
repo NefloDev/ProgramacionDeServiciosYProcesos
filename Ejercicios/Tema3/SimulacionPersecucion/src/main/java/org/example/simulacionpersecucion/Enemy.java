@@ -4,12 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 
 public class Enemy {
-    private static Enemy enemy;
     private ObservableMap<String, Integer> coordinates;
-    private Enemy(){
+    private int id;
+    public Enemy(int id){
         coordinates = FXCollections.observableHashMap();
         coordinates.put("X",0);
         coordinates.put("Y",0);
+        this.id  = id;
     }
 
     public ObservableMap<String, Integer> getCoordinates() {
@@ -32,10 +33,16 @@ public class Enemy {
         coordinates.put("Y", yPos);
     }
 
-    public static Enemy getInstance() {
-        if(enemy == null){
-            enemy = new Enemy();
-        }
-        return enemy;
+    public void setCoordinates(int xPos, int yPos){
+        coordinates.put("X", xPos);
+        coordinates.put("Y", yPos);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
