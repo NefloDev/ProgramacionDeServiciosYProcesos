@@ -62,18 +62,21 @@ public class SimulationController {
                 highScore = Integer.parseInt(reader.readLine());
             }
         }catch (IOException | NumberFormatException ignored){}
-        gameOverText.setVisible(false);
+
+        double screenWidth = SimulationApplication.WIDTH;
+        double screenHeight = SimulationApplication.HEIGHT;
+
         player = Player.getInstance();
         enemy = Enemy.getInstance();
-        topWidth = (((int)SimulationApplication.WIDTH/gridSize)*gridSize)-base;
-        topHeight = ((int)SimulationApplication.HEIGHT/gridSize)*gridSize-base;
-        gameOverText.setPrefWidth(SimulationApplication.WIDTH);
-        gameOverText.setPrefHeight(SimulationApplication.HEIGHT);
-        movesText.setPrefWidth(SimulationApplication.WIDTH);
-        movesText.setPrefHeight(SimulationApplication.HEIGHT);
-        countDownText.setPrefWidth(SimulationApplication.WIDTH);
-        countDownText.setPrefHeight(SimulationApplication.HEIGHT);
-        pane.setPrefSize(SimulationApplication.WIDTH, SimulationApplication.HEIGHT);
+
+        topWidth = (((int)screenWidth/gridSize)*gridSize)-base;
+        topHeight = ((int)screenHeight/gridSize)*gridSize-base;
+
+        gameOverText.setPrefSize(screenWidth, screenHeight);
+        movesText.setPrefSize(screenWidth, screenHeight);
+        countDownText.setPrefSize(screenWidth, screenHeight);
+
+        pane.setPrefSize(screenWidth, screenHeight);
         pane.autosize();
         pane.setStyle("""
                 -fx-background-color: #000000,
@@ -124,6 +127,7 @@ public class SimulationController {
 
             showGameOver();
         });
+
         generateEntities();
 
         moves = 0;
@@ -170,17 +174,7 @@ public class SimulationController {
         player.setX(x);
         player.setY(y);
 
-        enemy.setX(0);
-        enemy.setY(0);
-
         boolean retry;
-
-        /*
-        Set enemy coordinates by generating random positions, and checking if they are in a 5 block
-        radius from the player, if not it will keep retrying until both 2D coordinates are at least 5
-        blocks apart from the player
-         */
-
         do {
             retry = false;
             if(enemy.getX() == 0){

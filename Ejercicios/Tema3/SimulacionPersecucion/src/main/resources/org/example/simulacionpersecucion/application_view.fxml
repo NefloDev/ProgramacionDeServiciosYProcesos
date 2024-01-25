@@ -21,7 +21,7 @@
                 <Font size="30"/>
             </font>
         </Label>
-        <Label fx:id="gameOverText" text="GAME OVER" alignment="CENTER" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-text-alignment: center;">
+        <Label fx:id="gameOverText" visible="false" text="GAME OVER" alignment="CENTER" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-text-alignment: center;">
             <font>
                 <Font size="140" />
             </font>
