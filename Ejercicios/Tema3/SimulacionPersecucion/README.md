@@ -98,6 +98,5 @@ The [Application View](src/main/resources/org/example/simulacionpersecucion/appl
 
 Make sure to use this FXML file in conjunction with the [SimulationController](src/main/java/org/example/simulacionpersecucion/SimulationController.java) class to achieve the intended functionality.
 
-[!NOTE]
-
-Make sure to check the console for any potential error messages or additional information.
+> **Note** </br>
+> Make sure to check the console for any potential error messages or additional information.
