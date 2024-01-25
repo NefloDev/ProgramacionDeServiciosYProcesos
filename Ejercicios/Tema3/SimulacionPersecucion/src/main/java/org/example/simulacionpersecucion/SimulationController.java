@@ -49,7 +49,6 @@ public class SimulationController {
     private int topHeight;
     private Player player;
     private List<Enemy> enemies;
-    private final Image img = new Image("https://i.kym-cdn.com/photos/images/original/002/422/058/391.jpg");
     private final BooleanProperty gameFinished = new SimpleBooleanProperty();
     private int moves;
     private File f;
@@ -90,28 +89,28 @@ public class SimulationController {
         enemiesCircles = new ArrayList<>();
         enemies = new ArrayList<>();
 
-        playerCircle = setCircle("blue", null);
+        playerCircle = setCircle("blue");
         pane.getChildren().add(playerCircle);
 
         for (int i = 0; i < AMOUNT_ENEMIES; i++) {
             enemies.add(new Enemy(i));
 
-            enemiesCircles.add(setCircle(null, new ImagePattern(img)));
+            enemiesCircles.add(setCircle("red"));
         }
         pane.getChildren().addAll(enemiesCircles);
     }
-    private Circle setCircle(String color, ImagePattern image){
+    private Circle setCircle(String color){
         Circle temp = new Circle();
-        temp.setFill(image != null ? image : Paint.valueOf(color));
+        temp.setFill(Paint.valueOf(color));
         temp.setRadius(25);
         return temp;
     }
     private void setAllLabels(){
-        gameOverText = setLabel("GAME OVER", 140, false, "");
-        movesText = setLabel("", 40, false, "220 0 0 0");
-        countDownText = setLabel("", 30, false, "380 0 0 0");
-        movesScoreLabel = setLabel("", 30, true, "80 50 50 50");
-        highScoreLabel = setLabel("", 30, true, "50");
+        gameOverText = setLabel("GAME OVER", 140, false, "", "center");
+        movesText = setLabel("", 40, false, "220 0 0 0", "center");
+        countDownText = setLabel("", 30, false, "380 0 0 0", "center");
+        movesScoreLabel = setLabel("", 30, true, "80 50 50 50", "left");
+        highScoreLabel = setLabel("", 30, true, "50", "left");
 
         pane.getChildren().add(gameOverText);
         pane.getChildren().add(movesText);
@@ -119,14 +118,15 @@ public class SimulationController {
         pane.getChildren().add(movesScoreLabel);
         pane.getChildren().add(highScoreLabel);
     }
-    private Label setLabel(String text, double size, boolean visible, String padding){
+    private Label setLabel(String text, double size, boolean visible, String padding, String alignment){
         Label temp = new Label();
         temp.setText(text);
         temp.setAlignment(Pos.CENTER);
         temp.setFont(Font.font(size));
         temp.setStyle("-fx-text-fill: white;" +
                 "-fx-font-weight: bold;" +
-                "-fx-padding: " + (!padding.isEmpty() ? padding: "0") + ";");
+                "-fx-padding: " + (!padding.isEmpty() ? padding: "0") + ";" +
+                "-fx-text-alignment: " + alignment + ";");
         temp.setVisible(visible);
         return temp;
     }
