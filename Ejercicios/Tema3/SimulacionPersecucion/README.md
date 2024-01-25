@@ -83,10 +83,21 @@ Key features of the class include:
 - Movement of the player and enemy.
 - High score tracking and countdown handling.
 
-## Application View ([application_view.fxml](src/main/resources/org/example/simulacionpersecucion/application_view.fxml))
+## [Player](src/main/java/org/example/simulacionpersecucion/Player.java) Class
+The [Player](src/main/java/org/example/simulacionpersecucion/Player.java) class represents the entity controlled by the user.
+It is a singleton class, providing methods to get and set the player's coordinates.
 
-The [application_view.fxml](src/main/resources/org/example/simulacionpersecucion/application_view.fxml) file defines the structure and layout of the user interface using JavaFX FXML. It includes elements such as circles for the player and enemy, labels for score and game information, and styling for visual appeal.
+## [Enemy](src/main/java/org/example/simulacionpersecucion/Enemy.java) Class
+The [Enemy](src/main/java/org/example/simulacionpersecucion/Enemy.java) class represents the entity that the player must avoid.
+Like the Player class, it is a singleton class, ensuring that only one instance of the enemy is created.
+The class provides methods to get and set the enemy's coordinates and implements the observable pattern to notify changes in coordinates.
+
+## [Application View](src/main/resources/org/example/simulacionpersecucion/application_view.fxml)
+
+The [Application View](src/main/resources/org/example/simulacionpersecucion/application_view.fxml) file defines the structure and layout of the user interface using JavaFX FXML. It includes elements such as circles for the player and enemy, labels for score and game information, and styling for visual appeal.
 
 Make sure to use this FXML file in conjunction with the [SimulationController](src/main/java/org/example/simulacionpersecucion/SimulationController.java) class to achieve the intended functionality.
 
-**Note**: Make sure to check the console for any potential error messages or additional information.
+[!NOTE]
+
+Make sure to check the console for any potential error messages or additional information.

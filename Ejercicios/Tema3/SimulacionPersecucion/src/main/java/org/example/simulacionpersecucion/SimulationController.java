@@ -174,6 +174,9 @@ public class SimulationController {
         player.setX(x);
         player.setY(y);
 
+        enemy.setX(0);
+        enemy.setY(0);
+
         boolean retry;
         do {
             retry = false;
