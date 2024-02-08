@@ -30,7 +30,7 @@ public class APIClient {
         public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
             return args -> {
                 RestTemplate quote = restTemplate.getForObject(
-                        "http://localhost:8080/client", RestTemplate.class);
+                        "http://localhost:8080/product", RestTemplate.class);
                 log.info(quote.toString());
             };
         }
