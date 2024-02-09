@@ -23,12 +23,12 @@
   </thead>
   <tbody>
   <tr th:each="piloto : ${pilotos}">
-    <th scope="row" th:text="${piloto.getNumero()}"></th>
-    <td>[[${piloto.getNombre()}]]</td>
-    <td>[[${piloto.getAbreviatura()}]]</td>
-    <td>[[${piloto.getEquipo()}]]</td>
-    <td>[[${piloto.getPais()}]]</td>
-    <td>[[${#temporals.format(piloto.getFechaNacimiento(), 'dd/MM/YYYY')}]]</td>
+    <th scope="row" th:text="${piloto.getNo()}"></th>
+    <td>[[${piloto.getDriver()}]]</td>
+    <td>[[${piloto.getAbbreviation()}]]</td>
+    <td>[[${piloto.getTeam()}]]</td>
+    <td>[[${piloto.getCountry()}]]</td>
+    <td>[[${#temporals.format(piloto.getDate_of_birth(), 'dd/MM/YYYY')}]]</td>
   </tr>
   </tbody>
 </table>

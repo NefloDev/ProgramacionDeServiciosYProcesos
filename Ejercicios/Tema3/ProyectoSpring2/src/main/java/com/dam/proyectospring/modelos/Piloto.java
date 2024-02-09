@@ -1,8 +1,6 @@
 package com.dam.proyectospring.modelos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -16,17 +14,18 @@ import java.time.LocalDate;
 @Document("pilots")
 public class Piloto implements Serializable {
     @Id
-    private String id;
+    @Field("_id")
+    private String _id;
     @Field("driver")
-    private String nombre;
+    private String driver;
     @Field("abbreviation")
-    private String abreviatura;
+    private String abbreviation;
     @Field("no")
-    private int numero;
+    private int no;
     @Field("team")
-    private String equipo;
+    private String team;
     @Field("country")
-    private String pais;
+    private String country;
     @Field("date_of_birth")
-    private LocalDate fechaNacimiento;
+    private LocalDate date_of_birth;
 }

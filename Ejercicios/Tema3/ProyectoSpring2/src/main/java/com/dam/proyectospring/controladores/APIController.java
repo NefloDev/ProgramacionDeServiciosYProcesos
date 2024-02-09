@@ -34,14 +34,14 @@ public class APIController {
     // POST de un piloto, crea un piloto
     @PostMapping("/pilotos")
     public ResponseEntity<Piloto> addPilot(@RequestBody Piloto piloto) {
-        if(pilotoServicio.findById(piloto.getId()).isEmpty()){
-            return ResponseEntity.badRequest().build();
+        if (pilotoServicio.findById(piloto.get_id()).isPresent()){
+            return  ResponseEntity.badRequest().build();
         }
         return new ResponseEntity<>(pilotoServicio.savePilot(piloto), HttpStatus.OK);
     }
 
     // PUT de un piloto, actualiza un piloto
-    @PutMapping("/piloto")
+    @PutMapping("/pilotos")
     public ResponseEntity<Piloto> modifyPilot(@RequestBody Piloto piloto) {
         return new ResponseEntity<>(pilotoServicio.savePilot(piloto), HttpStatus.OK);
     }
