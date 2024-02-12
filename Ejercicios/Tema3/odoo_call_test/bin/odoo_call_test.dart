@@ -27,11 +27,13 @@ Future<List<User>> getUsers() async{
       'model': 'hr.employee',
       'method': 'search_read',
       'args': [],
+      //Selección de campos a mostrar
       'kwargs':{
         'fields': ['id', 'name', 'private_email', 'active', 'barcode', 'gender',
           'birthday', 'work_email', 'phone', 'marital', 'driving_license']
       }
     });
+    //Obtención de resultados en formato JSON
     for(var result in res){
       var temp = convert.jsonEncode(result);
       users.add(User.fromJson(convert.jsonDecode(temp)));
@@ -49,6 +51,7 @@ Future<String> createUser(User user) async{
     await client.callKw({
       'model': 'hr.employee',
       'method': 'create',
+      //Argumentos pasados como cuerpo de json
       'args': [
         {
           'name': user.name,
