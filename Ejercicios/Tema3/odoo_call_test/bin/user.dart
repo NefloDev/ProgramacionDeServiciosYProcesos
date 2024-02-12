@@ -20,13 +20,14 @@ class User{
   final MaritalStatus marital;
   final bool drivingLicense;
 
-  Map toPartialJson(){
+  Map toJson(){
     return {
+      'id': id,
       'name': name,
       'private_email': privateEmail,
       'active': active,
       'barcode': barcode,
-      'gender': gender,
+      'gender': gender.name,
       'birthday': getBirthDate(),
       'work_email': workEmail,
       'phone': phone,
@@ -35,14 +36,13 @@ class User{
     };
   }
 
-  Map toFullJson(){
+  Map toPartJson(){
     return {
-      'id': id,
       'name': name,
       'private_email': privateEmail,
       'active': active,
       'barcode': barcode,
-      'gender': gender,
+      'gender': gender.name,
       'birthday': getBirthDate(),
       'work_email': workEmail,
       'phone': phone,
