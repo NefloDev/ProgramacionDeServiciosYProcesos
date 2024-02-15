@@ -4,11 +4,11 @@ import 'dart:convert' as convert;
 import 'Gender.dart';
 import 'user.dart';
 
-const odooServerURL = 'http://localhost:8069';
+const odooServerURL = 'https://cosillas.odoo.com';
 final client = OdooClient(odooServerURL);
 
 void main(List<String> args) async{
-  await client.authenticate('base_de_datos', 'alejo', 'alejo');
+  await client.authenticate('cosillas', 'aurenfort@gmail.com', 'eresunarata');
   getUsers().then((value) => value.forEach((element) {print(element.toString());}));
   /*Future<String> created = createUser(User("Tupu", "fakeEmail@odoo.com", Gender.male, DateTime(1970, 01, 01)));
   created.then((value) {
