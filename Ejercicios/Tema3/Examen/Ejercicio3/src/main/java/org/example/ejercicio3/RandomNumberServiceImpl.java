@@ -27,6 +27,9 @@ public class RandomNumberServiceImpl implements RandomNumberService{
 
     @Override
     public Number getRandomNumberOf(Number randomNumber) {
-        return new Number(r.nextLong((long)(Math.pow(10,(String.valueOf(randomNumber.random).length()))-1)));
+        return new Number(r.nextLong(
+                (long)(Math.pow(10,(String.valueOf(randomNumber.random).length()))/10),
+                (long)(Math.pow(10,(String.valueOf(randomNumber.random).length()))-1)
+        ));
     }
 }

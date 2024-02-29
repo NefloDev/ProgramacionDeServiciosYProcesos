@@ -30,8 +30,8 @@ public class RandomNumberController {
     /*
         PUT
      */
-    @PutMapping("number")
-    public ResponseEntity<Number> getRandomNumberOf(Number num){
+    @PutMapping("/number")
+    public ResponseEntity<Number> getRandomNumberOf(@RequestBody Number num){
         return ResponseEntity.ok(randomService.getRandomNumberOf(num));
     }
 }
